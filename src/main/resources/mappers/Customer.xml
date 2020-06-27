@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.estore.dao.CustomerDao">
+	<select id="login" resultType="customer">
+		select * from tb_customer where user_name=#{userName} and password=#{password}
+	</select>
+	
+	<select id="countCustomerByUserName" resultType="int">
+		select count(*) from tb_customer where user_name=#{userName}
+	</select>
+	
+	<insert id="insertNewCustomer" >
+		insert into tb_customer(user_name,password,real_name,mobile,email,password_question,password_hint_answer) 
+		values(#{userName},#{password},#{realName},#{mobile},#{email},#{passwordQuestion},#{passwordHintAnswer})
+	</insert>
+	
+</mapper>

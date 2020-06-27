@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.estore.dao.OrderDao">
+	<insert id="insertIntoOrder">
+		insert into tb_order
+		(order_id,name,real_name,address,mobile,total_price,delivery_method,memo,delivery_sign,create_time,payment_mode)
+		values
+		(#{orderId},#{name},#{realName},#{address},#{mobile},#{totalPrice},#{deliveryMethod},#{memo},#{deliverySign},#{createTime},#{paymentMode})
+	</insert>
+	
+	
+	<select id="selectOrderByUserName" resultType="order">
+		select * from tb_order 
+		where 
+		name=#{userName}
+	</select>
+	
+	
+	<select id="selectOrderItemByOrderId" resultType="orderItem">
+		select * from tb_order_item
+		where
+		order_id=#{orderId}
+	</select>
+	
+	<select id="selectOrderByProductId" resultType="order">
+		select * from tb_order 
+		where 
+		order_id=#{orderId}
+	</select>
+	
+</mapper>

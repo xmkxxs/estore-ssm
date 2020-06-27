@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.estore.dao.CartItemDao">
+	<insert id="InsertIntoCart" parameterType="cartItem">
+		insert into tb_cart_item(product_id,user_id,product_name,price,quantity) 
+		values(#{productId},#{userId},#{productName},#{price},#{quantity})
+	</insert>
+	
+	<update id="modifyQuantity" parameterType="cartItem">
+		update tb_cart_item set quantity=#{quantity} where cart_item_id=#{cartItemId}
+	</update>
+	
+	<select id="getCartItemsByUserIdAndProductId" resultType="cartItem">
+		select * from tb_cart_item where user_id=#{userId} and product_id=#{productId}
+	</select>
+	
+	<select id="getCartItemsByUserId" resultType="cartItem">
+		select cart_item_id,product_name,price,quantity from tb_cart_item where user_id=#{userId}
+	</select>
+	
+	<!-- 删除购物车一条记录 -->
+	<delete id="removeCartItem">
+		delete from tb_cart_item where cart_item_id=#{cartItemId}
+	</delete>
+	
+	<!-- 清空购物车 -->
+	<delete id="clearCart">
+		delete from tb_cart_item where user_id=#{userId}
+	</delete>
+	
+	
+	
+	
+	
+</mapper>
